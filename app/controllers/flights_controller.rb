@@ -11,6 +11,6 @@ class FlightsController < ApplicationController
 
   private
   def query_params
-    params.require(:departure_airport_id, :arrival_airport_id, :passengers, :departure_time, :departure_date, :commit, :authenticity_token, :flight_id)
+    params.permit(:departure_airport_id, :arrival_airport_id, :passengers, :departure_time, :departure_date, :commit, :authenticity_token, :flight_id)
   end
 end
