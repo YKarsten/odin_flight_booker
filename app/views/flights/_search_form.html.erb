@@ -1,0 +1,29 @@
+<%= form_with(model: @flight, url: flights_path, method: "get") do |form|%>
+    <% @days = Flight.all.pluck(:departure_date).uniq.sort %>
+
+    <div>
+        <h2>Book a one-way flight</h2>
+
+        <div>
+            <h4>Departure</h4>
+            <%= select_tag 'departure_airport_id', options_from_collection_for_select(@airports, 'id', 'name'), include_blank: 'From', class: 'form_select'%>
+        </div>
+
+        <div>
+            <h4>Arrival</h4>
+            <%= select_tag 'arrival_airport_id', options_from_collection_for_select(@airports, 'id', 'name'), include_blank: 'To', class: 'form_select'%>
+        </div>
+
+        <div>
+            <h4>Date</h4>
+            <%= select_tag 'departure_date', options_for_select(@days), include_blank: 'Departing', class: 'form_select'%>
+        </div>
+
+        <div>
+            <h4>Passengers</h4>
+            <%= select_tag 'passengers', options_for_select(1..4), class: 'form_select'%>
+        </div>
+    </div>
+
+    <%= form.submit 'Search' %>    
+<% end%>
