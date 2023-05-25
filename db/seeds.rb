@@ -18,3 +18,13 @@ Airport.create(name: 'München', code: 'MUC')
 Airport.create(name: 'Stuttgart', code: 'STR')
 
 puts 'Created 10 airports'
+
+25.times do
+  (1..8).to_a.each do |i|
+    destinations = (1..8).to_a
+    destinations.delete(i)
+    Flight.create(departure_time: DateTime.now + rand(100..600), departure_date: (Date.today + rand(2..60)).strftime("%Y-%m-%d"), duration: rand(43..458.0), departure_airport_id: i, arrival_airport_id: destinations.sample)
+  end
+end
+
+puts "Created 25 flights originating from each airport, #{25 * 8} total."
