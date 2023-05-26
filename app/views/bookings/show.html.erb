@@ -1,0 +1,40 @@
+<div>
+    <h3>Your flight has been booked!</h3>
+    <div>
+        <h4>
+            <%= "#{@booking.flight.departure_airport.name} (#{@booking.flight.departure_airport.code}) to
+            #{@booking.flight.arrival_airport.name} (#{@booking.flight.arrival_airport.code})" %>
+        </h4>
+    </div>
+
+    <div>
+        <%= "Departure: #{@booking.flight.departure_date_formatted}"%>
+        <%#  - #{@booking.departure_time_formatted} %>
+    </div>
+
+    <div>
+        <%= "Duration: #{@booking.flight.duration.to_i}"%>
+    </div>
+
+    <div>
+        <%= "Flight number: #{@booking.flight.id}"%>
+    </div>
+</div>
+
+<% @booking.passengers.each_with_index do |passenger, passenger_number| %>
+    <div>
+        <% if @booking.passengers.count > 1 %>
+            <h4><%= "Passenger #{passenger_number + 1} Infromation"%></h4>
+        <% else %>
+            <h4><%= "Passenger Infromation" %></h4>
+        <% end %>
+
+        <hr>
+
+        <h5><%= "Name" %></h5>
+        <div><%= passenger.name.titleize %></div>
+
+        <h5><%= "Email" %></h5>
+        <div><%= passenger.email %></div>
+    </div>
+<% end %>
